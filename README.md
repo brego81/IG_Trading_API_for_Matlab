@@ -5,7 +5,7 @@ Compared with other alternatives Matlab provides a large selection of ready to u
 
 Among different brokers, IG is one of the few providing a fully functioning API and at the same time free accounts with direct access to DEMO and LIVE environment. This means that, with a zero initial investment, you can test your ideas in DEMO mode; and only when confident run your validated implementation in LIVE. 
 
-In terms of available products, IG is a leading provider of contracts for difference (CFDs) and financial spread betting covering Equities, Forex, Commodities, Indices, Binary options and much more. It should be mentioned that other brokers may offer cheaper commissions.
+In terms of available products, IG is a leading provider of contracts for difference (CFDs) and financial spread betting covering Equities, Forex, Commodities, Indices, Binary options and much more. It should be mentioned that other brokers may offer cheaper commissions.
 
 Full details about the API along with information about how to open an account with IG can be found at http://labs.ig.com/gettingstarted. 
 
