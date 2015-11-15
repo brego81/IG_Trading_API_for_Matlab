@@ -1,8 +1,6 @@
-% % IG Markets REST API Library for Matlab
+% % IG_Trading_API_for_Matlab for Matlab
 % % http://labs.ig.com/rest-trading-api-reference
-% % Original version by Matteo Bregonzio - 2015
-% % https://uk.linkedin.com/in/matteo-bregonzio-b0113325
-
+% % Original version by Matteo Bregonzio - 2015 - https://uk.linkedin.com/in/matteo-bregonzio-b0113325
 
 function out = IG_api(fun, par)
 if ~exist('par')
@@ -17,9 +15,11 @@ switch upper(fun)
         body.identifier = IG.identifier;
         body.password = IG.password;
         [out extras] = IG_web_call('POST',[URL 'session'], IG_header(2), IG_body(body));
-        IG.X_SECURITY_TOKEN = extras.firstHeaders.X_SECURITY_TOKEN;
-        IG.CST = extras.firstHeaders.CST;
-        IG.currentAccountId = out.currentAccountId;
+        if ~isfield(out, 'errorCode')
+            IG.X_SECURITY_TOKEN = extras.firstHeaders.X_SECURITY_TOKEN;
+            IG.CST = extras.firstHeaders.CST;
+            IG.currentAccountId = out.currentAccountId;
+        end
     case 'ACTIVITYHISTORY'
         if isfield(par,'from')
             extended_url = [ '&from='  par.from];
