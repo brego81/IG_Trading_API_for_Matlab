@@ -35,7 +35,7 @@ switch upper(fun)
         if isfield(par,'pageSize')
             extended_url = [ extended_url '&pageSize=' num2str(par.pageSize)];
         end
-        out = IG_web_call('GET',[URL 'history/activity?'], IG_header(2), extended_url); 
+        out = IG_web_call('GET',[URL 'history/activity?'], IG_header(2), extended_url);
     case 'TRANSACTIONHISTORY'
         if isfield(par,'type')
             extended_url = ['type=' par.type];
@@ -79,8 +79,8 @@ switch upper(fun)
             extended_url = [ extended_url '&max=' num2str(par.max)];
         end
         out = IG_web_call('GET',[URL 'prices/' par.epic '?'], IG_header(3), extended_url);
-    case 'PLOTALL'
-        out = IG_plot(par);
+    case 'GETDATA'
+        out = IG_getdata(par);
     case 'ACCOUNTSETTINGSGET'
         out = IG_web_call('GET',[URL 'accounts/preferences'], IG_header(1), par);
     case 'ACCOUNTSETTINGSUPDATE'
@@ -193,6 +193,41 @@ end
 if exist('par') > 0
     out(7).name = '_method';
     out(7).value ='DELETE';
+end
+end
+
+function out = IG_getdata(par)
+storage = par{1};
+path_data = par{2};
+data_type = par{3};
+
+f = strfind(path_data,'{#}'); % identify if you need to loop
+if f > 0
+    path_data_1 = path_data(1:f-1);
+    path_data_2 = path_data(f+4:end);
+    storage_1 =  eval(['storage.' path_data_1]);
+    
+    switch data_type
+        case 'NUM'
+            for i = 1:size(storage_1,2)
+                out(i) = eval(['storage_1{' num2str(i) '}.' path_data_2]);
+            end
+        case 'DATE'
+            
+            for i = 1:size(storage_1,2)
+                out(i) = datenum(eval(['storage_1{' num2str(i) '}.' path_data_2]));
+            end
+        case 'TEXT'
+            for i = 1:size(storage_1,2)
+                out{i} = eval(['storage_1{' num2str(i) '}.' path_data_2]);
+            end
+            
+        otherwise
+            disp('Unknown data type.');
+            out = -1;
+    end
+else
+    out = eval('storage.path_data');
 end
 end
 
