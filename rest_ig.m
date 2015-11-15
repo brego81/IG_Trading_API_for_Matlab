@@ -24,7 +24,7 @@ global IG;
 
 %% Login %%
 login_details; % load username & password from login_details.m
-LOG_IN_FIRST_TIME = 1; % When testing it is better do not login each run
+LOG_IN_FIRST_TIME = 0; % When testing it is better do not login each run
 if (LOG_IN_FIRST_TIME == 1)
     out = IG_api('LOGIN');
     if isfield(out, 'errorCode')
@@ -257,6 +257,14 @@ hsitData.resolution = 'MINUTE';
 hsitData.max = 100;
 last_100_values = IG_api('HistoricPrice',hsitData);
 
+% plot data
+figure(1);
+bidPrice = IG_api('GETDATA',{last_100_values, 'prices{#}.closePrice.bid', 'NUM'});
+snapshotTime = IG_api('GETDATA',{last_100_values, 'prices{#}.snapshotTime', 'DATE'});
+plot(snapshotTime,bidPrice);grid;
+datetick('x','keepticks','keeplimits');
+title(hsitData.epic);
+ 
 % get values from / to %
 hsitData.epic = 'IX.D.MIB.IFD.IP';
 hsitData.resolution = 'DAY';
@@ -264,6 +272,14 @@ hsitData.from = '2015-07-21 00:00:00';
 hsitData.to = '2015-08-21 00:00:00';
 %hsitData.max = 100;
 hist_values_from_to = IG_api('HistoricPrice',hsitData);
+
+% plot data
+figure(2);
+bidPrice = IG_api('GETDATA',{hist_values_from_to, 'prices{#}.closePrice.bid', 'NUM'});
+snapshotTime = IG_api('GETDATA',{hist_values_from_to, 'prices{#}.snapshotTime', 'DATE'});
+plot(snapshotTime,bidPrice,'r');grid;
+datetick('x','keepticks','keeplimits');
+title(hsitData.epic);
 
 %% Client Sentiment %%
 symbol = 'FT100';
@@ -286,21 +302,21 @@ disp(updateApplication);
 
 %% Transaction History %%
 transPar.type = 'ALL';
-%               ALL
-%               ALL_DEAL
-%               DEPOSIT
-%               WITHDRAWAL
+%                ALL
+%                ALL_DEAL
+%                DEPOSIT
+%                WITHDRAWAL
 transPar.from = '2014-07-21';
 transPar.to = datestr(now, 'yyyy-mm-dd');
 %transPar.maxSpanSeconds = 600;
-transPar.pageSize = -1;
+transPar.pageSize = 20; % -1 = all 
 transactionHistory = IG_api('TransactionHistory',transPar);
 
 %% Activity History %%
 actPar.from = '2014-07-21';
 actPar.to = datestr(now, 'yyyy-mm-dd');
 %actPar.maxSpanSeconds = 600;
-actPar.pageSize = -1;
+actPar.pageSize = 20; % -1 = all
 activityHistory = IG_api('ActivityHistory',actPar);
 
 %% Log out %%
