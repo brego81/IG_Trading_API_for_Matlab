@@ -24,7 +24,7 @@ global IG;
 
 %% Login %%
 login_details; % load username & password from login_details.m
-LOG_IN_FIRST_TIME = 0; % When testing it is better do not login each run
+LOG_IN_FIRST_TIME = 1; % When testing it is better do not login each run
 if (LOG_IN_FIRST_TIME == 1)
     out = IG_api('LOGIN');
     if isfield(out, 'errorCode')

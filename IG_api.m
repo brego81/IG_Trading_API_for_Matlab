@@ -78,7 +78,19 @@ switch upper(fun)
         if isfield(par,'max')
             extended_url = [ extended_url '&max=' num2str(par.max)];
         end
+        extended_url = [ extended_url '&pageSize=500']; % 500 samples per page
         out = IG_web_call('GET',[URL 'prices/' par.epic '?'], IG_header(3), extended_url);
+        if ~isfield(out,'errorCode')
+            totalPages = out.metadata.pageData.totalPages;
+            currentPage = out.metadata.pageData.pageNumber;
+            
+            for p = currentPage + 1 : totalPages %loop on all pages
+                p_out = IG_web_call('GET',[URL 'prices/' par.epic '?'], IG_header(3), [extended_url '&pageNumber=' num2str(p)]);
+                out.prices = [out.prices p_out.prices];
+                p_out = [];
+            end
+        end
+        
     case 'GETDATA'
         out = IG_getdata(par);
     case 'ACCOUNTSETTINGSGET'
