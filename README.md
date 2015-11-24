@@ -1,7 +1,7 @@
 #IG trading API for Matlab
 A simple and intuitive Matlab library designed to interact with ig.com web API. This library allows you to download historical data, monitor multiple markets, manage your positions and submit real-time orders. 
 
-Compared with other alternatives Matlab provides a large selection of ready-to-use algorithms covering statistics, machine learning, finance and optimization. Furthermore, with few lines of code you can have an advance multidimensional data visualization or to read and write in a variety of files formats. Finally, MATLAB Coder provides the ability to auto-generate fast C code. In a nutshell, Matlab appears as a competitive solution when it comes to financial data analysis and processing.
+Compared with other alternatives, Matlab provides a large selection of ready-to-use algorithms covering statistics, machine learning, finance and optimization. Furthermore, with few lines of code you can have an advance multidimensional data visualization or to read and write in a variety of files formats. Finally, MATLAB Coder provides the ability to auto-generate fast C code. In a nutshell, Matlab appears as a competitive solution when it comes to financial data analysis and processing.
 
 Among different brokers, IG is one of the few providing a fully functioning API and at the same time free accounts with direct access to DEMO and LIVE environment. This means that with a zero initial investment, you can test your ideas in DEMO mode; and only run your validated implementation in LIVE when completely confident.
 
