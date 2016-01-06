@@ -19,6 +19,7 @@ switch upper(fun)
             IG.X_SECURITY_TOKEN = extras.firstHeaders.X_SECURITY_TOKEN;
             IG.CST = extras.firstHeaders.CST;
             IG.currentAccountId = out.currentAccountId;
+            IG.lightstreamerEndpoint = out.lightstreamerEndpoint;
         end
     case 'ACTIVITYHISTORY'
         if isfield(par,'from')
@@ -142,6 +143,10 @@ switch upper(fun)
         disp('Unknown method.');
         out = -1;
 end
+
+if isfield(out,'errorCode')
+    disp(out.errorCode);
+end
 end
 
 function [out, extras]= IG_web_call(method, url, header, body)
@@ -242,17 +247,3 @@ else
     out = eval('storage.path_data');
 end
 end
-
-% function out = IG_parse_json(data)
-% fields = fieldnames(data{1});
-% for  i = 1 :size(data,2)
-%     for f = 1: size(fields,1)
-%         val = getfield(data{i}, fields{f});
-%         if isstruct(val)
-%             val = struct2array(val);
-%         end
-%         P{i,f} = val;
-%     end
-% end
-% out = [fields' ; P];
-% end
