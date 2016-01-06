@@ -20,5 +20,5 @@ A very handy tool for learning and testing the API is the API-companion availabl
 #Install and Config
 1. Copy all the files and directories in your local folder
 2. Edit login_details.m adding your X_IG_API_KEY, identifier and password (the first time make sure you point to the DEMO environment)
-3. Run rest_ig.m in order to test all the RESET API functions. lightstreamer_ig.m is designed to validated the Streaming API which employ Lightstreamer as data provider.
+3. Run rest_ig.m in order to test all the REST API functions. lightstreamer_ig.m is designed to validated the Streaming API which employ Lightstreamer as data provider.
 4. If it doesn't work, please try to replicate the same steps using the API-companion (REST: http://labs.ig.com/sample-apps/api-companion/index.html Streaming: https://labs.ig.com/sample-apps/streaming-companion/index.html) and try to spot the problem.
