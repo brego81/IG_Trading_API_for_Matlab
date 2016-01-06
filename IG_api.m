@@ -1,4 +1,4 @@
-% % IG_Trading_API_for_Matlab for Matlab
+% % IG_Trading_API_for_Matlab | REST and Streaming API supported
 % % http://labs.ig.com/rest-trading-api-reference
 % % Original version by Matteo Bregonzio - 2015 - https://uk.linkedin.com/in/matteo-bregonzio-b0113325
 
