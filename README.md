@@ -1,4 +1,4 @@
-#IG trading API for Matlab
+#IG trading API for Matlab | REST + Streaming
 A simple and intuitive Matlab library designed to interact with ig.com web API. This library allows you to download historical data, monitor multiple markets, manage your positions and submit real-time orders. 
 
 Compared with other alternatives, Matlab provides a large selection of ready-to-use algorithms covering statistics, machine learning, finance and optimization. Furthermore, with few lines of code you can have an advance multidimensional data visualization or to read and write in a variety of files formats. Finally, MATLAB Coder provides the ability to auto-generate fast C code. In a nutshell, Matlab appears as a competitive solution when it comes to financial data analysis and processing.
@@ -20,5 +20,5 @@ A very handy tool for learning and testing the API is the API-companion availabl
 #Install and Config
 1. Copy all the files and directories in your local folder
 2. Edit login_details.m adding your X_IG_API_KEY, identifier and password (the first time make sure you point to the DEMO environment)
-3. Run rest_ig.m in order to test all the API functions
-4. If it doesn't work, please try to replicate the same steps using the API-companion (http://labs.ig.com/sample-apps/api-companion/index.html) and try to spot the problem.
+3. Run rest_ig.m in order to test all the RESET API functions. lightstreamer_ig.m is designed to validated the Streaming API which employ Lightstreamer as data provider.
+4. If it doesn't work, please try to replicate the same steps using the API-companion (REST: http://labs.ig.com/sample-apps/api-companion/index.html Streaming: https://labs.ig.com/sample-apps/streaming-companion/index.html) and try to spot the problem.
